@@ -3,7 +3,6 @@ import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
-import Task from '../models/Task.js';
 
 /**
  * @DESC Register a User
@@ -106,4 +105,3 @@ export const logout = asyncHandler(async (req, res) => {
 export const me = asyncHandler(async (req, res) => {
   res.status(200).json({ user: req.me, message: 'Logged In user' });
 });
-

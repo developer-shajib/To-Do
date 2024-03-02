@@ -1,5 +1,5 @@
 // allowed origin
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173', 'https://to-do-gamma-two.vercel.app'];
 
 // cors options
 const corsOptions = {
