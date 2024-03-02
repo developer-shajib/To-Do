@@ -31,6 +31,10 @@ const authApiSlice = apiSlice.injectEndpoints({
       query: () => '/api/v1/project',
       providesTags: ['Project']
     }),
+    getSingleProject: builder.query({
+      query: (id) => `/api/v1/project/${id}`,
+      providesTags: ['singleProject']
+    }),
     createProject: builder.mutation({
       query: (data) => ({
         url: '/api/v1/project',
@@ -38,10 +42,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         body: data
       })
     }),
-    getAllTask: builder.query({
-      query: () => '/api/v1/task',
-      providesTags: ['Task']
-    }),
+
     createTask: builder.mutation({
       query: (data) => ({
         url: '/api/v1/task',
@@ -55,7 +56,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         method: 'PATCH',
         body: data
       }),
-      invalidatesTags: ['Task']
+      invalidatesTags: ['singleProject']
     }),
     searchTask: builder.mutation({
       query: (data) => ({
@@ -68,4 +69,4 @@ const authApiSlice = apiSlice.injectEndpoints({
 });
 
 // export endpoints
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetAllProjectsQuery, useCreateProjectMutation, useCreateTaskMutation, useGetAllTaskQuery, useUpdateTaskMutation, useSearchTaskMutation } = authApiSlice;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetAllProjectsQuery, useCreateProjectMutation, useCreateTaskMutation, useUpdateTaskMutation, useSearchTaskMutation, useGetSingleProjectQuery } = authApiSlice;

@@ -24,7 +24,7 @@ const Board = () => {
   const [modal, setModal] = useState(false);
   const [assignModal, setAssignModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { input, setInput, handleInputChange } = useFormFields({ title: '', description: '', priority: '', category: '', taskStatus: '', date: '', assignee: [] });
+  const { input, setInput, handleInputChange } = useFormFields({ title: '', description: '', priority: 'Normal', category: 'Bug', taskStatus: 'To Do', date: '', assignee: [] });
   const [createTask, { error, data, isLoading }] = useCreateTaskMutation();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -56,6 +56,7 @@ const Board = () => {
     }
     if (data) {
       dispatch(addNewData({ task: data.task }));
+      setModal(false);
       createToast(data.message, 'success');
       setInput((prevState) => ({ ...prevState, title: '', description: '', priority: '', category: '', taskStatus: '', date: '', assignee: [] }));
     }

@@ -50,14 +50,14 @@ export const createTask = expressAsyncHandler(async (req, res) => {
   });
 
   if (task.taskStatus === 'To Do') {
-    await Project.findByIdAndUpdate(projectId, { $push: { todo: task.id } });
+    await Project.findByIdAndUpdate(projectId, { $push: { todo: task._id } });
   }
   if (task.taskStatus === 'In Progress') {
-    await Project.findByIdAndUpdate(projectId, { $push: { inProgress: task.id } });
+    await Project.findByIdAndUpdate(projectId, { $push: { inProgress: task._id } });
   }
 
   if (task.taskStatus === 'Completed') {
-    await Project.findByIdAndUpdate(projectId, { $push: { completed: task.id } });
+    await Project.findByIdAndUpdate(projectId, { $push: { completed: task._id } });
   }
 
   res.status(200).json({ task, message: 'New task created success' });

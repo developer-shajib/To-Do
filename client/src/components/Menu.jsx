@@ -23,8 +23,8 @@ const Menu = () => {
   const { input, setInput, handleInputChange } = useFormFields({ name: '' });
   const [createProject, { error: createProjectError, isLoading: createProjectLoading, data: createProjectData }] = useCreateProjectMutation();
 
-  // Form Submit Handler
-  const handleFormSubmit = (e) => {
+  // Create Task Form Submit Handler
+  const handleTaskCreateFormSubmit = (e) => {
     e.preventDefault();
 
     if (!input.name) return createToast('Provide project name');
@@ -67,7 +67,7 @@ const Menu = () => {
         isOpen={modal}
         onClose={() => setModal(!modal)}>
         <form
-          onSubmit={handleFormSubmit}
+          onSubmit={handleTaskCreateFormSubmit}
           action=''
           className='mt-10 flex gap-2'>
           <input
@@ -99,7 +99,7 @@ const Menu = () => {
             <ul className=' flex flex-col mt-6 '>
               <li className='text-black hover:bg-white  transition-all duration-300 rounded-md  '>
                 <Link
-                  to={'#'}
+                  to={'/'}
                   className='flex gap-2 items-center text-lg px-4 py-2'>
                   <AiOutlineHome /> Dashboard
                 </Link>

@@ -1,21 +1,31 @@
 import Board from '../components/Board.jsx';
 import { useEffect, useState } from 'react';
 import Overview from '../components/Overview.jsx';
-import { useSearchTaskMutation } from '../features/auth/authApiSlice.js';
+import { useGetSingleProjectQuery, useSearchTaskMutation } from '../features/auth/authApiSlice.js';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../features/auth/authSlice.js';
+import { useParams } from 'react-router-dom';
 
 const Project = () => {
   const [open, setOpen] = useState('Board');
   const [keyword, setKeyword] = useState('');
   const [searchTask, { error, data }] = useSearchTaskMutation(keyword);
   const dispatch = useDispatch();
+  const { id } = useParams(0);
+  const { data: singleProjectData, error: singleProjectError } = useGetSingleProjectQuery(id);
 
   // Search Form submit handler
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     dispatch(searchTask(keyword));
   };
+
+  useEffect(() => {
+    if (singleProjectData) {
+      dispatch(setUserData({ tasks: singleProjectData?.project.todo }));
+      console.log(singleProjectData);
+    }
+  }, [singleProjectData, dispatch]);
 
   useEffect(() => {
     if (data) {

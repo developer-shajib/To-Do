@@ -20,7 +20,7 @@ export const project = expressAsyncHandler(async (req, res) => {
  * @access public
  */
 export const singProject = expressAsyncHandler(async (req, res) => {
-  const project = await Project.findById(req.params.id);
+  const project = await Project.findById(req.params.id).populate('todo');
 
   if (!project) return res.status(400).json({ error: 'Project not found!' });
 
