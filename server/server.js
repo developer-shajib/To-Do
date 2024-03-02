@@ -19,7 +19,10 @@ const PORT = process.env.PORT || 9090;
 // set middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
+app.use(
+  cors()
+  // corsOptions
+);
 app.use(cookieParser());
 
 // Static folder
