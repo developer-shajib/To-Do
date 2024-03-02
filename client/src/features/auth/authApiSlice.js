@@ -44,7 +44,7 @@ const authApiSlice = apiSlice.injectEndpoints({
     }),
     createTask: builder.mutation({
       query: (data) => ({
-        url: '/api/v1/task/${id}',
+        url: '/api/v1/task',
         method: 'POST',
         body: data
       })

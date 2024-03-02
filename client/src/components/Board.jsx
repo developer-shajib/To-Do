@@ -38,7 +38,6 @@ const Board = () => {
 
   // Form Submit Handler
   const handleFormSubmit = (e) => {
-    e.stopPropagation();
     e.preventDefault();
 
     if (!input.title || !input.description || !input.priority || !input.category || !input.taskStatus || !input.date) return createToast('All fields are required');
